@@ -1,0 +1,84 @@
+/* Fondo con imagen y superposición oscura */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('/assets/fondo-login.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+/* Tarjeta translúcida */
+div {
+  background-color: rgba(255, 255, 255, 0.15); /* transparencia */
+  backdrop-filter: blur(12px); /* difumina fondo */
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* borde elegante */
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  text-align: left;
+  margin: 0.5rem 0 0.2rem;
+  font-weight: 500;
+  color: #f1f1f1;
+}
+
+input {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  transition: border 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1abc9c;
+}
+
+/* Botón */
+button {
+  padding: 0.7rem;
+  background-color: #1abc9c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #16a085;
+}
+
+/* Enlace */
+p a {
+  display: block;
+  margin-top: 1rem;
+  color: #1abc9c;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
