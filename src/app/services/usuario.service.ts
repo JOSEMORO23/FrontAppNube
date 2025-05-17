@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-private url = 'http://localhost:8081/api/usuarios';; // Cambia al puerto adecuado si es necesario
+  private url = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
