@@ -1,0 +1,37 @@
+<h2>📦 Gestión de Productos</h2>
+
+<div style="margin-bottom: 15px;">
+  <input [(ngModel)]="nuevoProducto.nombre" placeholder="Nombre">
+  <input type="number" [(ngModel)]="nuevoProducto.stock" placeholder="Stock">
+  <input type="number" [(ngModel)]="nuevoProducto.precio" placeholder="Precio">
+  <input [(ngModel)]="nuevoProducto.categoria" placeholder="Categoría">
+  <button (click)="guardarProducto()">
+    {{ editando ? 'Actualizar' : 'Agregar' }}
+  </button>
+  <button *ngIf="editando" (click)="cancelarEdicion()">Cancelar</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Stock</th>
+      <th>Precio</th>
+      <th>Categoría</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of productos">
+      <td>{{ p.id }}</td>
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.stock }}</td>
+      <td>{{ p.precio }}</td>
+      <td>{{ p.categoria }}</td>
+      <td>
+        <button (click)="editarProducto(p)">✏️</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

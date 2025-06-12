@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+import { ProductoComponent } from './producto/producto.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BienvenidaComponent } from './components/bienvenida/bienvenida.componen
     FooterComponent,
     LoginComponent,
     RegistroComponent,
-    BienvenidaComponent
+    BienvenidaComponent,
+    ProductoComponent
   ],
   imports: [
     BrowserModule,

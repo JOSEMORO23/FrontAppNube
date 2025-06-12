@@ -17,7 +17,7 @@ export class LoginComponent {
     this.usuarioService.login(this.correo, this.clave).subscribe(
       (res) => {
         // Redirige a la pantalla de bienvenida
-        this.router.navigate(['/bienvenida']);
+        this.router.navigate(['/productos']);
       },
       (err) => {
         alert('Credenciales incorrectas');
