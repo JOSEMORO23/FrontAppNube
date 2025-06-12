@@ -6,13 +6,14 @@
   height: 100vh;
   background: 
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('/assets/fondo-login.jpg') no-repeat center center;
-  background-size: cover;
+    url('/assets/fondo.jpg') no-repeat center center;
+  background-size: 250%; /* Más grande (puedes subirlo a 200%) */
 }
+
 
 /* Tarjeta translúcida */
 div {
-  background-color: rgba(255, 255, 255, 0.15); /* transparencia */
+  background-color: rgba(255, 255, 255, 0.42); /* transparencia */
   backdrop-filter: blur(12px); /* difumina fondo */
   -webkit-backdrop-filter: blur(12px);
   padding: 2rem 3rem;
@@ -21,7 +22,7 @@ div {
   width: 100%;
   max-width: 400px;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.3); /* borde elegante */
+  border: 1px solid rgba(255, 255, 255, 0.073); /* borde elegante */
 }
 
 h2 {
@@ -52,13 +53,13 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #1abc9c;
+  border-color: #e55817;
 }
 
 /* Botón */
 button {
   padding: 0.7rem;
-  background-color: #1abc9c;
+  background-color: #e55817;
   color: white;
   font-weight: bold;
   border: none;
@@ -68,14 +69,14 @@ button {
 }
 
 button:hover {
-  background-color: #16a085;
+  background-color: #e55817;
 }
 
 /* Enlace */
 p a {
   display: block;
   margin-top: 1rem;
-  color: #1abc9c;
+  color: #e55817;
   text-decoration: none;
 }
 
