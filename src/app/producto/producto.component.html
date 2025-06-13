@@ -1,37 +1,55 @@
-<h2>📦 Gestión de Productos</h2>
+<div class="card-container">
+  <div class="logo-container">
+    <img src="/assets/logo.png" alt="Logo" class="logo" />
+    <h1 class="app-title">Gestión de Productos</h1>
+  </div>
 
-<div style="margin-bottom: 15px;">
-  <input [(ngModel)]="nuevoProducto.nombre" placeholder="Nombre">
-  <input type="number" [(ngModel)]="nuevoProducto.stock" placeholder="Stock">
-  <input type="number" [(ngModel)]="nuevoProducto.precio" placeholder="Precio">
-  <input [(ngModel)]="nuevoProducto.categoria" placeholder="Categoría">
-  <button (click)="guardarProducto()">
-    {{ editando ? 'Actualizar' : 'Agregar' }}
-  </button>
-  <button *ngIf="editando" (click)="cancelarEdicion()">Cancelar</button>
+  <h2>📝 Registro de Producto</h2>
+
+  <form (ngSubmit)="guardarProducto()">
+    <label for="nombre">Nombre:</label>
+    <input
+      type="text"
+      id="nombre"
+      [(ngModel)]="nuevoProducto.nombre"
+      name="nombre"
+      required
+      placeholder="Ej: Lápiz"
+    />
+
+    <label for="stock">Stock:</label>
+    <input
+      type="number"
+      id="stock"
+      [(ngModel)]="nuevoProducto.stock"
+      name="stock"
+      required
+      min="0"
+    />
+
+    <label for="precio">Precio:</label>
+    <input
+      type="text"
+      id="precio"
+      [(ngModel)]="nuevoProducto.precio"
+      name="precio"
+      required
+      pattern="^[0-9]+([.][0-9]{1,2})?$"
+      (keypress)="validarDecimal($event)"
+      placeholder="Ej: 19.99"
+    />
+
+    <label for="categoria">Categoría:</label>
+    <select
+      id="categoria"
+      [(ngModel)]="nuevoProducto.categoria"
+      name="categoria"
+      required
+    >
+      <option value="" disabled selected>Selecciona una categoría</option>
+      <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+    </select>
+
+    <button type="submit">Agregar</button>
+  </form>
 </div>
-
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Stock</th>
-      <th>Precio</th>
-      <th>Categoría</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of productos">
-      <td>{{ p.id }}</td>
-      <td>{{ p.nombre }}</td>
-      <td>{{ p.stock }}</td>
-      <td>{{ p.precio }}</td>
-      <td>{{ p.categoria }}</td>
-      <td>
-        <button (click)="editarProducto(p)">✏️</button>
-      </td>
-    </tr>
-  </tbody>
-</table>

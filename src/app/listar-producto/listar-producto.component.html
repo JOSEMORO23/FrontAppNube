@@ -1,0 +1,81 @@
+<div class="card-container">
+  <div class="logo-container">
+    <img src="/assets/logo.png" alt="Logo" class="logo" />
+    <h1 class="app-title">Lista de Productos</h1>
+  </div>
+
+  <h2>📋 Productos Registrados</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Stock</th>
+          <th>Precio</th>
+          <th>Categoría</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of productos">
+          <td>{{ p.id }}</td>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.stock }}</td>
+          <td>{{ p.precio | number:'1.2-2' }}</td>
+          <td>{{ p.categoria }}</td>
+          <td>
+            <button (click)="editar(p)">✏️ Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="productoEditando" class="edit-form">
+    <h3>✏️ Editar Producto</h3>
+    <form (ngSubmit)="actualizar()" #editForm="ngForm">
+      <label for="nombre">Nombre:</label>
+      <input type="text" [(ngModel)]="productoEditando.nombre" name="nombre" required />
+
+      <label for="stock">Stock:</label>
+      <input
+        type="number"
+        [(ngModel)]="productoEditando.stock"
+        name="stock"
+        min="0"
+        required
+        step="1"
+      />
+
+      <label for="precio">Precio:</label>
+      <input
+        type="text"
+        id="precio"
+        [(ngModel)]="productoEditando.precio"
+        name="precio"
+        required
+        pattern="^[0-9]+([.][0-9]{1,2})?$"
+        (keypress)="validarDecimal($event)"
+        placeholder="Ej: 19.99"
+      />
+      <label for="categoria">Categoría:</label>
+      <select
+        id="categoria"
+        [(ngModel)]="productoEditando.categoria"
+        name="categoria"
+        required
+      >
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+      </select>
+  
+
+      <div class="btn-group">
+        <button type="submit" [disabled]="!editForm.form.valid">Actualizar</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,22 +1,55 @@
-footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    padding: 1.2rem 2rem;
-    text-align: center;
-    font-size: 0.9rem;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  footer a {
-    color: #1abc9c;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
+.footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+}
+
+.footer-contenido {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.footer-nombre h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #f39c12;
+}
+
+.footer-nombre p {
+  margin: 0;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.footer-devs {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 5px;
+  padding-top: 5px;
+}

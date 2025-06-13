@@ -1,70 +1,112 @@
-/* Fondo sutil y centrado */
 :host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(to right, #74ebd5, #acb6e5); /* Puedes cambiarlo */
-  }
-  
-  /* Tarjeta del formulario */
-  div {
-    background-color: #fff;
-    padding: 2rem 3rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
-  }
-  
-  h2 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Formulario */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Etiquetas */
-  label {
-    text-align: left;
-    margin: 0.5rem 0 0.2rem;
-    font-weight: 600;
-    color: #34495e;
-  }
-  
-  /* Campos de entrada */
-  input {
-    padding: 0.65rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-bottom: 1rem;
-    transition: border 0.3s ease;
-    font-size: 1rem;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #3498db;
-  }
-  
-  /* Botón */
-  button {
-    padding: 0.7rem;
-    background-color: #3498db;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #2980b9;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-y: auto;
+  background:
+    linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)),
+    url('/assets/fondo.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 2rem;
+}
+
+/* Tarjeta */
+.card-container {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Logo y título */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 70px;
+  height: auto;
+  margin-bottom: 0.3rem;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Título Login */
+h2 {
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  text-align: left;
+  margin: 0.5rem 0 0.2rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+input {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  transition: border 0.3s;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+input:focus {
+  outline: none;
+  border-color: #e55817;
+}
+
+/* Botón */
+button {
+  padding: 0.7rem;
+  background-color: #e55817;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  background-color: #c74814;
+}
+
+/* Enlace de registro */
+.registro-link {
+  margin-top: 0.5rem;
+}
+
+.registro-link a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.registro-link a:hover {
+  color: #e55817;
+  text-decoration: underline;
+}

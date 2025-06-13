@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,22 @@ export class LoginComponent {
   login() {
     this.usuarioService.login(this.correo, this.clave).subscribe(
       (res) => {
-        // Redirige a la pantalla de bienvenida
-        this.router.navigate(['/productos']);
+        Swal.fire({
+          icon: 'success',
+          title: 'Bienvenido a RapiTec',
+          text: 'Has iniciado sesión con éxito',
+          confirmButtonColor: '#1e3799'
+        }).then(() => {
+          this.router.navigate(['/bienvenida']);
+        });
       },
       (err) => {
-        alert('Credenciales incorrectas');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de autenticación',
+          text: 'Credenciales incorrectas',
+          confirmButtonColor: '#e74c3c'
+        });
       }
     );
   }

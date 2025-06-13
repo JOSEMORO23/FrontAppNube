@@ -1,57 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
 import { Producto } from '../models/producto.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
+  styleUrls: ['./producto.component.css']
 })
-export class ProductoComponent implements OnInit {
-  productos: Producto[] = [];
+export class ProductoComponent {
   nuevoProducto: Producto = {
     nombre: '',
     stock: 0,
     precio: 0,
     categoria: ''
   };
-  editando: boolean = false;
-  idEditando: number | null = null;
+
+  categorias: string[] = [
+    'Frescos',
+    'Lácteos',
+    'Congelados',
+    'Despensa',
+    'Bebidas',
+    'Cuidado personal',
+    'Limpieza del hogar',
+    'Mascotas',
+    'Electrónicos',
+    'Ropa'
+  ];
 
   constructor(private productoService: ProductoService) {}
 
-  ngOnInit(): void {
-    this.listarProductos();
-  }
+  guardarProducto(): void {
+    if (
+      !this.nuevoProducto.nombre ||
+      this.nuevoProducto.stock < 0 ||
+      this.nuevoProducto.precio < 0 ||
+      !this.nuevoProducto.categoria
+    ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Todos los campos son obligatorios y deben tener valores válidos.'
+      });
+      return;
+    }
 
-  listarProductos(): void {
-    this.productoService.listar().subscribe(data => {
-      this.productos = data;
+    this.productoService.guardar(this.nuevoProducto).subscribe(() => {
+      this.nuevoProducto = { nombre: '', stock: 0, precio: 0, categoria: '' };
+
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: 'Producto registrado correctamente ',
+        confirmButtonText: 'Aceptar'
+      });
     });
   }
 
-  guardarProducto(): void {
-  const productoAGuardar: Producto = this.editando && this.idEditando != null
-    ? { ...this.nuevoProducto, id: this.idEditando }
-    : this.nuevoProducto;
+  validarDecimal(event: KeyboardEvent): void {
+    const pattern = /[0-9.]/;
+    const inputChar = String.fromCharCode(event.keyCode);
+    const input = event.target as HTMLInputElement;
 
-  this.productoService.guardar(productoAGuardar).subscribe(() => {
-    this.listarProductos();
-    this.cancelarEdicion(); // Esto limpia y resetea el formulario
-  });
-}
-
-
-  editarProducto(producto: Producto): void {
-    this.nuevoProducto = { ...producto };
-    this.idEditando = producto.id!;
-    this.editando = true;
+    if (!pattern.test(inputChar) || (inputChar === '.' && input.value.includes('.'))) {
+      event.preventDefault();
+    }
   }
-
-  cancelarEdicion(): void {
-    this.editando = false;
-    this.idEditando = null;
-    this.nuevoProducto = { nombre: '', stock: 0, precio: 0, categoria: '' };
-  }
-
- 
 }
