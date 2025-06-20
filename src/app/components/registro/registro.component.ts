@@ -18,41 +18,54 @@ export class RegistroComponent {
   constructor(private usuarioService: UsuarioService, private router: Router) {}
 
   registrar() {
-    // ✅ Validamos antes de continuar
+    // ✅ 1️⃣ Validamos la clave primero
     if (!this.validarClave(this.clave)) {
       this.mostrarErrorClave = true;
       return;
     }
 
-    const usuario = {
-      nombres: this.nombres,
-      apellidos: this.apellidos,
-      correo: this.correo,
-      clave: this.clave
-    };
-  
-    this.usuarioService.registrarUsuario(usuario).subscribe(
-      (res) => {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Registro exitoso!',
-          text: 'El usuario ha sido registrado correctamente.',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Ok'
-        }).then(() => {
-          this.router.navigate(['/login']);
-        });
-      },
-      (err) => {
+    // ✅ 2️⃣ Ahora verificamos si el correo existe
+    this.usuarioService.existeEmail(this.correo).subscribe((existe) => {
+      if (existe) {
         Swal.fire({
           icon: 'error',
-          title: 'Error en el registro',
-          text: 'No se pudo registrar el usuario. Verifica los datos.',
+          title: 'Usuario existente',
+          text: 'Ya existe un usuario registrado con este correo electrónico.',
           confirmButtonColor: '#d33',
-          confirmButtonText: 'Intentar de nuevo'
+          confirmButtonText: 'Intentar con otro'
         });
+      } else {
+        // ✅ 3️⃣ Si NO existe, hacemos el registro
+        const usuario = {
+          nombres: this.nombres,
+          apellidos: this.apellidos,
+          correo: this.correo,
+          clave: this.clave
+        };
+        this.usuarioService.registrarUsuario(usuario).subscribe(
+          (res) => {
+            Swal.fire({
+              icon: 'success',
+              title: '¡Registro exitoso!',
+              text: 'El usuario ha sido registrado correctamente.',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Ok'
+            }).then(() => {
+              this.router.navigate(['/login']);
+            });
+          },
+          (err) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error en el registro',
+              text: 'No se pudo registrar el usuario. Verifica los datos.',
+              confirmButtonColor: '#d33',
+              confirmButtonText: 'Intentar de nuevo'
+            });
+          }
+        );
       }
-    );
+    });
   }
 
   private validarClave(clave: string): boolean {
