@@ -110,3 +110,11 @@ button:hover {
   color: #e55817;
   text-decoration: underline;
 }
+.error-box {
+  margin-top: 5px;
+  padding: 8px;
+  background-color: #ffe5e5;
+  color: #d33;
+  font-size: 14px;
+  border-radius: 4px;
+}

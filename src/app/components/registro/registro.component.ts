@@ -13,17 +13,24 @@ export class RegistroComponent {
   apellidos: string = '';
   correo: string = '';
   clave: string = '';
+  mostrarErrorClave: boolean = false;
 
   constructor(private usuarioService: UsuarioService, private router: Router) {}
 
   registrar() {
+    // ✅ Validamos antes de continuar
+    if (!this.validarClave(this.clave)) {
+      this.mostrarErrorClave = true;
+      return;
+    }
+
     const usuario = {
       nombres: this.nombres,
       apellidos: this.apellidos,
       correo: this.correo,
       clave: this.clave
     };
-
+  
     this.usuarioService.registrarUsuario(usuario).subscribe(
       (res) => {
         Swal.fire({
@@ -46,5 +53,12 @@ export class RegistroComponent {
         });
       }
     );
+  }
+
+  private validarClave(clave: string): boolean {
+    const tieneLetra = /[a-zA-Z]/.test(clave);
+    const tieneNumero = /\d/.test(clave);
+    const longitudValida = clave.length >= 6;
+    return tieneLetra && tieneNumero && longitudValida;
   }
 }
